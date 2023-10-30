@@ -68,19 +68,13 @@ namespace MMABooksTests
         public void TestUpdate()
         {
             Customer c = new Customer(1);
-            string oldName = c.Name;
-            string oldAddress = c.Address;
-            c.Name = "Doe, John";
-            c.Address = "101 Test Update";
+            c.Name = "Edited Name";
+            c.Address = "Edited Address";
             c.Save();
 
-            Assert.AreEqual("Doe, John", c.Name);
-            Assert.AreEqual("101 Test Update", c.Address);
-
-            //Cleanup
-            c.Name = oldName;
-            c.Address = oldAddress;
-            c.Save();
+            Customer c2 = new Customer(1);
+            Assert.AreEqual(c2.Name, c.Name);
+            Assert.AreEqual(c2.Address, c.Address);
         }
 
         [Test]
@@ -139,6 +133,19 @@ namespace MMABooksTests
             Assert.Throws<ArgumentOutOfRangeException>(() => c.State = "ORE");
             Assert.Throws<ArgumentOutOfRangeException>(() => c.Zipcode = "0123456789012345");
 
+        }
+
+        [Test]
+        public void TestConcurrencyIssue()
+        {
+            Customer c1 = new Customer(1);
+            Customer c2 = new Customer(1);
+
+            c1.Name = "Updated first";
+            c1.Save();
+
+            c2.Name = "Updated second";
+            Assert.Throws<Exception>(() => c2.Save());
         }
     }
 }

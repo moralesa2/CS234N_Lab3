@@ -37,3 +37,12 @@ BEGIN
     Where productID = prodID and concurrencyid = conCurrId;
 END //
 DELIMITER ;
+
+DELIMITER // 
+CREATE PROCEDURE usp_ProductUpdate (in prodID int, in productcode char(10), in description varchar(50), in unitprice decimal(10, 4), in onhandquantity int, in conCurrId int)
+BEGIN
+	Update products
+    Set productcode = productcode, description = description, unitprice = unitprice, onhandquantity = onhandquantity, concurrencyid = (concurrencyid + 1)
+    Where productID = prodID and concurrencyid = conCurrId;
+END //
+DELIMITER ;

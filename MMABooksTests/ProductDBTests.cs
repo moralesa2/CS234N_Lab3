@@ -78,15 +78,12 @@ namespace MMABooksTests
         public void TestUpdate()
         {
             ProductProps p = (ProductProps)db.Retrieve(1);
-            string oldCode = p.ProductCode;
             p.ProductCode = "T4ST";
+            p.Description = "Test description";
             Assert.True(db.Update(p));
             p = (ProductProps)db.Retrieve(1);
             Assert.AreEqual("T4ST", p.ProductCode);
-
-            //Cleanup
-            p.ProductCode = oldCode;
-            db.Update(p);
+            Assert.AreEqual("Test description", p.Description);
         }
     }
 }

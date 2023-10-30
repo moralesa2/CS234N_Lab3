@@ -79,16 +79,13 @@ namespace MMABooksTests
         [Test]
         public void TestUpdate()
         {
-            CustomerProps p = (CustomerProps)db.Retrieve(696);
-            string oldName = p.Name;
-            p.Name = "Doe, Jane";
+            CustomerProps p = (CustomerProps)db.Retrieve(1);
+            p.Name = "Test name";
+            p.Address = "Test address";
             Assert.True(db.Update(p));
-            p = (CustomerProps)db.Retrieve(696);
-            Assert.AreEqual("Doe, Jane", p.Name);
-
-            //Cleanup
-            p.Name = oldName;
-            db.Update(p);
+            p = (CustomerProps)db.Retrieve(1);
+            Assert.AreEqual("Test name", p.Name);
+            Assert.AreEqual("Test address", p.Address);
         }
     }
 }   

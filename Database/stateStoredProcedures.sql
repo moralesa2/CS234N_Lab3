@@ -67,10 +67,10 @@ END //
 DELIMITER ;
 
 DELIMITER // 
-CREATE PROCEDURE usp_CustomerUpdate (in custID int, in name varchar(20), in conCurrId int)
+CREATE PROCEDURE usp_CustomerUpdate (in custID int, in name varchar(20), in address varchar(50), in city varchar(20), in state char(2), in zipcode char(15), in conCurrId int)
 BEGIN
 	Update customers
-    Set name = name, concurrencyid = (concurrencyid + 1)
+    Set name = name, address = address, city = city, state = state, zipcode = zipcode, concurrencyid = (concurrencyid + 1)
     Where customerID = custID and concurrencyid = conCurrId;
 END //
 DELIMITER ;

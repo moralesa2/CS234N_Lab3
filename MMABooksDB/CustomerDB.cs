@@ -191,9 +191,17 @@ namespace MMABooksDB
             command.CommandType = CommandType.StoredProcedure;
             command.Parameters.Add("custID", DBDbType.Int32);
             command.Parameters.Add("name", DBDbType.VarChar);
+            command.Parameters.Add("address", DBDbType.VarChar);
+            command.Parameters.Add("city", DBDbType.VarChar);
+            command.Parameters.Add("state", DBDbType.String);
+            command.Parameters.Add("zipcode", DBDbType.String);
             command.Parameters.Add("conCurrId", DBDbType.Int32);
             command.Parameters["custID"].Value = props.CustomerID;
             command.Parameters["name"].Value = props.Name;
+            command.Parameters["address"].Value = props.Address;
+            command.Parameters["city"].Value = props.City;
+            command.Parameters["state"].Value = props.State;
+            command.Parameters["zipcode"].Value = props.Zipcode;
             command.Parameters["conCurrId"].Value = props.ConcurrencyID;
 
             try
