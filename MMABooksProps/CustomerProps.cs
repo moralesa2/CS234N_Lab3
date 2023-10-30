@@ -13,7 +13,7 @@ namespace MMABooksProps
     [Serializable()]
     public class CustomerProps : IBaseProps
     {
-        //Customer properties
+        #region properties
         public int CustomerID { get; set; } = 0;
         public string Name { get; set; } = "";
         public string Address { get; set; } = "";
@@ -21,6 +21,7 @@ namespace MMABooksProps
         public string State { get; set; } = "";
         public string Zipcode { get; set; } = "";
         public int ConcurrencyID { get; set; } = 0;
+        #endregion
 
         public object Clone()
         {
