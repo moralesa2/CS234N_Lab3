@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 
 namespace MMABooksProps
 {
+    [Serializable]
     public class ProductProps : IBaseProps
     {
         //Product properties
